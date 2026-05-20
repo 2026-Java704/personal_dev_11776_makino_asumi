@@ -62,6 +62,11 @@ public class UserController {
 		if (!password.isEmpty() && !password.equals(passwordConfirm)) {
 			errorList.add("パスワードが一致しません");
 		}
+		if (!email.isEmpty()) {
+			if (userRepository.findByEmail(email).isPresent()) {
+				errorList.add("このメールアドレスは既に登録されています");
+			}
+		}
 
 		if (errorList.size() > 0) {
 			model.addAttribute("errorList", errorList);
@@ -111,8 +116,8 @@ public class UserController {
 			}
 		}
 
-		// エラーがあれば入力値を保持してログイン画面に戻す
-		if (!errorList.isEmpty()) {
+		// エラーがあったらログイン画面に戻す
+		if (errorList.size() > 0) {
 			model.addAttribute("errorList", errorList);
 			model.addAttribute("email", email);
 			return "login";
