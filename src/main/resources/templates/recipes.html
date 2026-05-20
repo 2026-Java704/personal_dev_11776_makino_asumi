@@ -8,10 +8,25 @@
 	
 	<h1>レシピ投稿サイト</h1> 
 	
-	  <input type="text" name="recipe"> <button>検索</button><br>
+	  <input type="text" name="recipe"> <button>検索</button>  <button>投稿</button><br>
 	  
-	カテゴリー 
-	
-
+	  <span>カテゴリー：</span>
+	  		
+	  	<span style="margin-right: 15px;"><a href="/recipes?categoryId=1">丼もの</a></span>
+	  	<span style="margin-right: 15px;"><a href="/recipes?categoryId=2">麵類</a></span>
+	  	<span style="margin-right: 15px;"><a href="/recipes?categoryId=3">デザート</a></span>
+		<span style="margin-right: 15px;"><a href="/recipes?categoryId=4">肉料理</a></span>
+		<span style="margin-right: 15px;"><a href="/recipes?categoryId=5">サラダ</a></span>
+		<span style="margin-right: 15px;"><a href="/recipes?categoryId=6"> 魚介</a></span>
+		<span style="margin-right: 15px;"><a href="/recipes?categoryId=7">鍋もの</a></span>
+		<span style="margin-right: 15px;"><a href="/recipes?categoryId=8">粉もの</a></span><br>
+		
+		<p>
+		レシピ一覧<br>
+		<tr th:each="recipe : ${recipes}"><br>
+			<td th:text="${recipe.name}">料理名</td>						
+		</tr>
+		</p>
+		
 </body>
 </html>
