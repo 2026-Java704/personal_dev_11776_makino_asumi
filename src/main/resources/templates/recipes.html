@@ -21,7 +21,7 @@
 		<p>
 		レシピ一覧<br>
 		<tr th:each="recipe : ${recipes}"><br>
-			<td th:text="${recipe.name}">料理名</td>						
+			<a th:href="@{/recipes/{id}(id=${recipe.id})}" th:text="${recipe.name}">料理名</a>			
 		</tr>
 		</p>
 		
