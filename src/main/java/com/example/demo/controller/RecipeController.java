@@ -23,7 +23,7 @@ public class RecipeController {
 			@RequestParam(name = "categoryId", required = false) Integer categoryId,
 			Model model) {
 
-		List<String> categoryNames = List.of("丼もの", "麵類", "デザート", "肉料理", "サラダ", "魚介", "鍋もの", "粉もの");
+		List<String> categoryNames = List.of("丼もの", "麵類", "デザート", "肉料理", "スープ", "サラダ", "魚介", "パン", "鍋もの", "粉もの");
 		model.addAttribute("categoryNames", categoryNames);
 
 		List<Recipe> recipeList = null;
