@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Recipe;
@@ -25,7 +26,8 @@ public class RecipeController {
 			@RequestParam(defaultValue = "") String keyword,
 			Model model) {
 
-		List<String> categoryNames = List.of("丼もの", "麵類", "デザート", "肉料理", "スープ", "サラダ", "魚介", "パン", "鍋もの", "粉もの");
+		List<String> categoryNames = List.of("丼もの", "麵類", "デザート", "肉料理", "スープ", "サラダ", "魚介", "パン", "鍋もの", "粉もの", "和菓子",
+				"その他");
 		model.addAttribute("categoryNames", categoryNames);
 
 		List<Recipe> recipeList = null;
@@ -58,8 +60,30 @@ public class RecipeController {
 
 	//投稿画面
 	@GetMapping("/recipeCreate")
-	public String create() {
+	public String create(Model model) {
+
+		List<String> categoryNames = List.of("丼もの", "麵類", "デザート", "肉料理", "スープ", "サラダ", "魚介", "パン", "鍋もの", "粉もの", "和菓子",
+				"その他");
+		model.addAttribute("categoryNames", categoryNames);
+
 		return "recipeCreate";
 	}
 
+	//レシピ新規作成
+	@PostMapping("/recipes")
+	public String add(
+			@RequestParam("categoryId") Integer categoryId,
+			@RequestParam("name") String name,
+			@RequestParam("recipe") String recipe) {
+
+		Recipe newRecipe = new Recipe();
+		newRecipe.setCategoryId(categoryId);
+		newRecipe.setName(name);
+		newRecipe.setRecipe(recipe);
+
+		recipeRepository.save(newRecipe);
+
+		return "redirect:/recipes";
+
+	}
 }

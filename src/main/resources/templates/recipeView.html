@@ -7,8 +7,10 @@
 <body>
 	<form th:action="@{/recipes}" method="get" style="display: inline;">
 		    <input type="text" name="keyword" th:value="${keyword}" placeholder="検索">
-		    <button type="submit">検索</button><button>投稿</button><br>
-		</form>
+		    <button type="submit">検索</button>
+			<input type="button" th:onclick="|location.href='@{/recipeCreate}'|" value="投稿">
+	</form>
+	
 	
 		<div>
 			<h2>レシピ</h2>
