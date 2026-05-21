@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>レシピ閲覧画面</title>
+</head>
+<body>
+	<form th:action="@{/recipes}" method="get" style="display: inline;">
+		    <input type="text" name="keyword" th:value="${keyword}" placeholder="検索">
+		    <button type="submit">検索</button><button>投稿</button><br>
+		</form>
+	
+		<div>
+			<h2>レシピ</h2>
+			<div>
+				<strong>料理名：</strong>
+				<span th:text="${recipe.name}">料理名</span>
+			</div>
+			<div style="margin-top: 10px;">
+				<strong>作り方：</strong>
+				<span th:text="${recipe.recipe}">作り方</span>
+			</div>
+		</div>
+
+	
+
+</body>
+</html>

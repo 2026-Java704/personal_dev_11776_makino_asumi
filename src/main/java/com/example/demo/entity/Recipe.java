@@ -16,6 +16,16 @@ public class Recipe {
 
 	private String name;
 
+	private String recipe;
+
+	public String getRecipe() {
+		return recipe;
+	}
+
+	public void setRecipe(String recipe) {
+		this.recipe = recipe;
+	}
+
 	@Column(name = "category_id")
 	private Integer categoryId;
 

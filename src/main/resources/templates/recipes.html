@@ -8,8 +8,12 @@
 	
 	<h1>レシピ投稿サイト</h1> 
 	
-	  <input type="text" name="recipe"> <button>検索</button>  <button>投稿</button><br>
-	  
+	<form th:action="@{/recipes}" method="get" style="display: inline;">
+	    <input type="text" name="keyword" th:value="${keyword}" placeholder="検索">
+	    <button type="submit">検索</button>
+		<input type="button" th:onclick="|location.href='@{/recipeCreate}'|" value="投稿"><br>
+		</form>
+	
 	  <span>カテゴリー：</span>
 	  
 	  <a th:href="@{/recipes}">全レシピ</a>
@@ -18,12 +22,14 @@
 	      <a th:href="@{/recipes(categoryId=${status.count})}" th:text="${catName}">カテゴリー名</a>
 	  </span>
 		
-		<p>
-		レシピ一覧<br>
-		<tr th:each="recipe : ${recipes}"><br>
-			<a th:href="@{/recipes/{id}(id=${recipe.id})}" th:text="${recipe.name}">料理名</a>			
-		</tr>
-		</p>
+	  <p>レシピ一覧</p>
+	  <table>
+	      <tr th:each="recipe : ${recipes}">
+	          <td>
+	              <a th:href="@{/recipes/{id}(id=${recipe.id})}" th:text="${recipe.name}">料理名</a>
+	          </td>
+	      </tr>
+	  </table>
 		
 </body>
 </html>
