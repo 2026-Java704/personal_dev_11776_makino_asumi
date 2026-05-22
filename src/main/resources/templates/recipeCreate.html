@@ -3,31 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <title>レシピ作成画面</title>
+<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-	<h2>レシピ作成画面</h2>
+	<h2 class="heading-4">レシピ作成画面</h2>
 	
 	<form th:action="@{/recipes}" method="post">
 		
-		<select id="category" name="categoryId" required>
-			<option value="">カテゴリーを選択してください</option>
-		<option th:each="catName, status : ${categoryNames}" 
-						        th:value="${status.count}" 
-						        th:text="${catName}">
-		</option>
-		</select>
+		<label class="selectbox-3">
+		    <select id="category" name="categoryId" required>
+		        <option value="">カテゴリーを選択してください</option>
+		        <option th:each="catName, status : ${categoryNames}" 
+		                th:value="${status.count}" 
+		                th:text="${catName}">
+		        </option>
+		    </select>
+		</label>
+
 
 	
 		
-		<p>料理名<br>
-			<textarea name="name"cols="30" rows="3" ></textarea>
+		<p><h3 class="heading-6">料理名</h3><br>
+			<textarea class="textbox-1" name="name"cols="30" rows="3" ></textarea>
 		</p>
-		<p>作り方<br>
-			<textarea name="recipe"cols="30" rows="10" ></textarea>
+		<p><h3 class="heading-6">作り方</h3><br>
+			<textarea class="textbox-1" name="recipe"cols="30" rows="10" ></textarea>
 		</p>
 		
 		
-		<input type="submit" value="投稿">
+		<input type="submit" value="投稿"  class="button-2">
 	</form>
 
 </body>

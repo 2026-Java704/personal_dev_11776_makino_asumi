@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>新規会員登録</title>
+<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-	<h1>新規会員登録</h1>
+	<h2 class="heading-37">新規会員登録</h2>
 	
 	<div th:if="${errorList}" style="color: red;">
 			
@@ -15,11 +16,21 @@
 	
 	<form th:action="@{/users/add}" method="post">
 		
-	<input type="text"name="email" 	 placeholder="メールアドレス"><br>
-	<input type="text"name="password"  placeholder="パスワード"><br>
-	<input type="text"name="passwordConfirm" placeholder="パスワード(確認)"><br>
-	
-	<button>新規作成</button>
+		<label>
+				    <span class="textbox-1-label"></span>
+				    <input type="text" name="email" class="textbox-1" placeholder="メールアドレス"/><br>
+		</label>
+		
+		<label>
+						    <span class="textbox-1-label"></span>
+						    <input type="text" name="password" class="textbox-1" placeholder="パスワード"><br>
+		</label>
+		<label>
+						    <span class="textbox-1-label"></span>
+						    <input type="text" name="passwordConfirm" class="textbox-1" placeholder="パスワード(確認)"><br>
+		</label>
+<p>
+	<button class="button-49">新規作成</button></p>
 	</form>
 
 

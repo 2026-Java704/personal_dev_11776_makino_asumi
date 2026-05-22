@@ -26,7 +26,8 @@ public class RecipeController {
 			@RequestParam(defaultValue = "") String keyword,
 			Model model) {
 
-		List<String> categoryNames = List.of("丼もの", "麵類", "デザート", "肉料理", "スープ", "サラダ", "魚介", "パン", "鍋もの", "粉もの", "和菓子",
+		List<String> categoryNames = List.of("丼もの", "麵類", "デザート", "肉料理", "野菜", "スープ", "サラダ", "魚介", "パン", "鍋もの", "粉もの",
+				"和菓子",
 				"その他");
 		model.addAttribute("categoryNames", categoryNames);
 
@@ -62,7 +63,8 @@ public class RecipeController {
 	@GetMapping("/recipeCreate")
 	public String create(Model model) {
 
-		List<String> categoryNames = List.of("丼もの", "麵類", "デザート", "肉料理", "スープ", "サラダ", "魚介", "パン", "鍋もの", "粉もの", "和菓子",
+		List<String> categoryNames = List.of("丼もの", "麵類", "デザート", "肉料理", "野菜", "スープ", "サラダ", "魚介", "パン", "鍋もの", "粉もの",
+				"和菓子",
 				"その他");
 		model.addAttribute("categoryNames", categoryNames);
 
