@@ -45,6 +45,7 @@ public class UserController {
 	// 新規作成ボタンを押したとき
 	@PostMapping("/users/add")
 	public String add(
+			@RequestParam String name,
 			@RequestParam String email,
 			@RequestParam String password,
 			@RequestParam String passwordConfirm,
@@ -75,6 +76,7 @@ public class UserController {
 		}
 
 		User user = new User();
+		user.setName(name);
 		user.setEmail(email);
 		user.setPassword(password);
 

@@ -1,38 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>新規会員登録</title>
-<link rel="stylesheet" href="/css/style.css">
+	<meta charset="UTF-8">
+	<title>新規会員登録</title>
+	<link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
 	<h2 class="heading-37">新規会員登録</h2>
-	
+
 	<div th:if="${errorList}" style="color: red;">
-			
-				<li th:each="error : ${errorList}" th:text="${error}"></li>
-			
+
+		<li th:each="error : ${errorList}" th:text="${error}"></li>
+
 	</div>
-	
+
 	<form th:action="@{/users/add}" method="post">
-		
 		<label>
-				    <span class="textbox-1-label"></span>
-				    <input type="text" name="email" class="textbox-1" placeholder="メールアドレス"/><br>
+			<span class="textbox-1-label"></span>
+			<input type="text" name="name" class="textbox-1" placeholder="名前" /><br>
 		</label>
-		
+
 		<label>
-						    <span class="textbox-1-label"></span>
-						    <input type="text" name="password" class="textbox-1" placeholder="パスワード"><br>
+			<span class="textbox-1-label"></span>
+			<input type="text" name="email" class="textbox-1" placeholder="メールアドレス" /><br>
+		</label>
+
+		<label>
+			<span class="textbox-1-label"></span>
+			<input type="text" name="password" class="textbox-1" placeholder="パスワード"><br>
 		</label>
 		<label>
-						    <span class="textbox-1-label"></span>
-						    <input type="text" name="passwordConfirm" class="textbox-1" placeholder="パスワード(確認)"><br>
+			<span class="textbox-1-label"></span>
+			<input type="text" name="passwordConfirm" class="textbox-1" placeholder="パスワード(確認)"><br>
 		</label>
-<p>
-	<button class="button-49">新規作成</button></p>
+		<p>
+			<button class="button-49">新規作成</button>
+		</p>
 	</form>
 
 
 </body>
+
 </html>

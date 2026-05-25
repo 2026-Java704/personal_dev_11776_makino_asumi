@@ -7,7 +7,7 @@ body{
 }
 
 /*ログイン画面,新規会員登録*/
-/*ぼたん*/
+/*ボタン*/
 .button-49 {
     display: flex;
     justify-content: center;
@@ -369,7 +369,7 @@ body{
     font-size: 1em;
     cursor: pointer;
 }
-/*レシピ投稿 テキストエリア*/
+/*レシピ作成 テキストエリア*/
 .textbox-1 {
     width: 50%;
     padding: 2px 5px;

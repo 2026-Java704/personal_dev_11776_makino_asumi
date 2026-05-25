@@ -1,54 +1,74 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>レシピ閲覧画面</title>
-<link rel="stylesheet" href="/css/style.css">
+	<meta charset="UTF-8">
+	<title>レシピ閲覧画面</title>
+	<link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
 	<form th:action="@{/recipes}" method="get" style="display: inline;">
-		
+
 		<div class="search-form-4">
 
-		        <div class="search-box-wrapper">
-		        <button type="submit" aria-label="検索"></button>
-		        <input type="text" name="keyword" th:value="${keyword}" placeholder="検索">
-		    </div>
+			<div class="search-box-wrapper">
+				<button type="submit" aria-label="検索"></button>
+				<input type="text" name="keyword" th:value="${keyword}" placeholder="検索">
+			</div>
 
-		   
-		    <button type="submit" class="button-3">検索</button>
 
-		    
-		    <input type="button" th:onclick="|location.href='@{/recipeCreate}'|" value="投稿" class="button-3">
+			<button type="submit" class="button-3">検索</button>
+			<input type="button" th:onclick="|location.href='@{/recipeCreate}'|" value="投稿" class="button-3">
 
 		</div>
-
-
-			
 	</form>
-	
-	
+
+
+	<h2 class="heading-4">レシピ詳細</h2>
+	<div class="button011">
+		<a th:href="@{/recipes}" class="my-logout-link">トップへ戻る</a>
+	</div>
+
 	<table class="recipe-table">
-	    <tr>
-	        <th>料理名</th>
-	        <td th:text="${recipe.name}">料理名</td>
-	    </tr>
-	    <tr>
-	        <th>作り方</th>
-	        <td>
-	            <div class="recipe-text-box" th:text="${recipe.recipe}" style="white-space: pre-wrap;">
-	              
-	            </div>
-	        </td>
-	    </tr>
+		<tr>
+			<th>料理名</th>
+			<td th:text="${recipe.name}">料理名</td>
+		</tr>
+		<tr>
+			<th>作り方</th>
+			<td>
+				<div class="recipe-text-box" th:text="${recipe.recipe}" style="white-space: pre-wrap;">
+
+				</div>
+			</td>
+		</tr>
 	</table>
 
-			</p>
-
-
-		</div>
-
 	
+	<div class="comment-section">
+
+		<!-- コメント投稿フォーム -->
+		<form th:action="@{/recipes/{id}/comments(id=${recipe.id})}" method="POST">
+			<h2 class="heading-6">レビュー</h2><br>
+			<textarea class="textbox-1" name="content" rows="4" placeholder="レビュー" required></textarea><br>
+			<input type="submit" value="レビューを投稿" class="button-3">
+		</form>
+
+		<div class="comment-list" style="margin-top: 20px;">
+			<h2 class="heading-6">レビュー一覧（<span th:text="${comments.size()}">0</span>件）</h2>
+
+
+
+
+
+			<div th:each="c : ${comments}" style="border-bottom: 1px solid #ccc; padding: 10px 0;">
+
+				<p th:text="${c.content}"></p>
+			</div>
+		</div>
+	</div>
 
 </body>
+
 </html>

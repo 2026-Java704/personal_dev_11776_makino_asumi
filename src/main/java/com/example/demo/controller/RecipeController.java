@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.Comment;
 import com.example.demo.entity.Recipe;
+import com.example.demo.entity.User;
+import com.example.demo.repository.CommentRepository;
 import com.example.demo.repository.RecipeRepository;
 
 @Controller
@@ -18,14 +23,19 @@ public class RecipeController {
 
 	@Autowired
 	private RecipeRepository recipeRepository;
+	@Autowired
+	private CommentRepository commentRepository;
 
 	// レシピ画面・一覧表示
 	@GetMapping("/recipes")
 	public String index(
 			@RequestParam(name = "categoryId", required = false) Integer categoryId,
 			@RequestParam(defaultValue = "") String keyword,
-			Model model) {
+			HttpSession session, Model model) {
 
+		User loginUser = (User) session.getAttribute("loginUser");
+
+		model.addAttribute("loginUser", loginUser);
 		List<String> categoryNames = List.of("丼もの", "麵類", "デザート", "肉料理", "野菜", "スープ", "サラダ", "魚介", "パン", "鍋もの", "粉もの",
 				"和菓子",
 				"その他");
@@ -52,11 +62,18 @@ public class RecipeController {
 
 	//レシピ閲覧画面
 	@GetMapping("/recipes/{id}")
-	public String showRecipe(@PathVariable("id") Integer id, Model model) {
+	public String showRecipe(@PathVariable("id") Integer id, HttpSession session, Model model) { // 💡引数に「HttpSession session」を追加
+
+		User loginUser = (User) session.getAttribute("loginUser");
+		model.addAttribute("loginUser", loginUser);
+
 		Recipe recipe = recipeRepository.findById(id).orElse(null);
 		model.addAttribute("recipe", recipe);
-		return "recipeView";
 
+		List<Comment> comments = commentRepository.findByRecipeId(id);
+		model.addAttribute("comments", comments);
+
+		return "recipeView";
 	}
 
 	//投稿画面
@@ -88,4 +105,5 @@ public class RecipeController {
 		return "redirect:/recipes";
 
 	}
+
 }
